@@ -301,10 +301,10 @@ class ProcessBuilder {
     _processAutoConnectArg(args){
         if(ConfigManager.getAutoConnect() && this.server.isAutoConnect()){
             const serverURL = new URL('my://' + this.server.getAddress())
-            args.push('--server')
+            args.push('play.scandium.tk')
             args.push(serverURL.hostname)
             if(serverURL.port){
-                args.push('--port')
+                args.push('25565')
                 args.push(serverURL.port)
             }
         }
@@ -318,7 +318,7 @@ class ProcessBuilder {
      * @returns {Array.<string>} An array containing the full JVM arguments for this process.
      */
     constructJVMArguments(mods, tempNativePath){
-        if(Util.mcVersionAtLeast('1.13', this.server.getMinecraftVersion())){
+        if(Util.mcVersionAtLeast('1.7.10', this.server.getMinecraftVersion())){
             return this._constructJVMArguments113(mods, tempNativePath)
         } else {
             return this._constructJVMArguments112(mods, tempNativePath)
